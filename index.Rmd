@@ -51,7 +51,7 @@ opts_chunk$set(
 <br>
 ## First plot
 ```{r plot1, class.source="code-r-small"}
-data <- read.csv("acs2017_census_tract_data.csv")
+data <- read.csv("https://raw.githubusercontent.com/dabandaidai/JSC370-project/main/acs2017_census_tract_data.csv")
 sort_by_pop <- data %>% 
   arrange(desc(TotalPop))
 sort_by_pop <- head(sort_by_pop, 100)
@@ -89,7 +89,7 @@ The plot shows the relationship between the income and the log unemployment rate
 Note: You need to name each code chunk, like this one: `plot1`
 
 ```{r plot2, class.source="code-r-small"}
-plt2 <- plt_smooth <- ggplot(
+plt_smooth <- ggplot(
   sort_by_pop,
   aes(x = MeanCommute, y = log(Unemployment))
 ) +
@@ -97,7 +97,7 @@ plt2 <- plt_smooth <- ggplot(
   geom_smooth() +
   theme_minimal() +
   scale_x_continuous(trans = "log")
-ggplotly(plt_smooth)
+plt2 <- ggplotly(plt_smooth)
 ```
 The plot shows the relationship between the mean commute time (in minutes) and the log unemployment rate(again, due to skewness) for the top 100 most populated states in the data frame. The size of each point is determined by the total population of the state, and the color of the point represents the state.
 
